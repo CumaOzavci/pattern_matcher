@@ -1,0 +1,17 @@
+<launch>
+
+    <arg name="scan_topic" default="scan" />
+    <arg name="pattern_topic" default="pattern" />
+    <arg name="clustered_points_topic" default="clustered_points" />
+    <arg name="pattern_filepath" default="$(find pattern_matcher)/pcd/pattern.pcd" />
+
+    <node name="pattern_matcher" type="pattern_matcher" pkg="pattern_matcher" output="screen">
+        <param name="scan_topic" value="$(arg scan_topic)" />
+        <param name="pattern_topic" value="$(arg pattern_topic)" />
+        <param name="clustered_points_topic" value="$(arg clustered_points_topic)" />
+        <param name="pattern_filepath" value="$(arg pattern_filepath)" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pattern_matcher)/config/pattern_matcher.rviz"/>
+
+</launch>

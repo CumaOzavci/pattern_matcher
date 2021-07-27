@@ -1,0 +1,19 @@
+<launch>
+
+    <arg name="mean_queue_size" default="20" />
+    <arg name="location_filter_x" default="0.5" />
+    <arg name="location_filter_y" default="0.2" />
+    <arg name="voxel_leaf_size" default="0.0075" />
+    <arg name="scan_topic" default="scan" />
+    <arg name="output_file" default="$(find pattern_matcher)/pcd/pattern_new.pcd" />
+
+    <node name="pattern_recorder" type="pattern_recorder" pkg="pattern_matcher" output="screen">
+        <param name="mean_queue_size" value="$(arg mean_queue_size)" />
+        <param name="location_filter_x" value="$(arg location_filter_x)" />
+        <param name="location_filter_y" value="$(arg location_filter_y)" />
+        <param name="voxel_leaf_size" value="$(arg voxel_leaf_size)" />
+        <param name="scan_topic" value="$(arg scan_topic)" />
+        <param name="output_file" value="$(arg output_file)" />
+    </node>
+
+</launch>

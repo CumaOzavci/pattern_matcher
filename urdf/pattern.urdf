@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="pattern">
+
+    <link name="pattern_base_link" />
+
+    <joint name="pattern_joint" type="fixed">
+        <parent link="pattern_base_link" />
+        <child link="pattern_mesh" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="pattern_mesh">
+        <visual>
+            <origin xyz="-0.175 0.05 -0.25" rpy="1.5707 0 0" />
+            <geometry>
+                <mesh filename="package://pattern_matcher/meshes/pattern.stl"  scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="-0.175 0.05 -0.25" rpy="1.5707 0 0" />
+            <geometry>
+                <mesh filename="package://pattern_matcher/meshes/pattern.stl"  scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="100.0" />
+            <inertia ixx="1" ixy="0"  ixz="0" iyy="1" iyz="0" izz="1" />
+        </inertial> 
+
+    </link>
+
+</robot>

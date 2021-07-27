@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Turtlebot -->
+    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch" />
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch" />
+
+    <!-- Spawn Pattern Model -->
+    <param name="pattern_description" textfile="$(find pattern_matcher)/urdf/pattern.urdf"/>
+
+    <node name="pattern_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <remap from="robot_description" to="pattern_description" />
+        <remap from="/joint_states" to="/pattern_joint_states" />
+    </node>
+
+    <node name="pattern_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <remap from="robot_description" to="pattern_description" />
+        <remap from="/joint_states" to="/pattern_joint_states" />
+    </node>
+
+    <node name="pattern_spawn_robot" pkg="gazebo_ros" type="spawn_model" args="-urdf -param pattern_description -model pattern -x -0.5 -y -0.5 -z 0.25 -Y -1.5707"/>
+
+    <!-- Joy Node -->
+    <node name="joy_node" pkg="joy" type="joy_node">
+        <param name="dev" value="/dev/input/js0"/>
+        <param name="deadzone" value="0.1" />
+        <param name="autorepeat_rate" value="0.0" />
+    </node>
+
+    <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+        <param name="scale_linear" value="1.0" />
+        <param name="scale_angular" value="1.0"/>
+    </node>
+    
+</launch>
