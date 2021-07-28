@@ -1,9 +1,9 @@
 <launch>
 
-    <arg name="scan_topic" default="scan" />
-    <arg name="pattern_topic" default="pattern" />
-    <arg name="clustered_points_topic" default="clustered_points" />
-    <arg name="pattern_filepath" default="$(find pattern_matcher)/pcd/pattern.pcd" />
+    <arg name="scan_topic" default="scan" />                                                    <!-- Name of lidar scan topic -->
+    <arg name="pattern_topic" default="pattern" />                                              <!-- Name of lidar pattern topic -->
+    <arg name="clustered_points_topic" default="clustered_points" />                            <!-- Name of lidar clustered point topic -->
+    <arg name="pattern_filepath" default="$(find pattern_matcher)/pcd/pattern.pcd" />           <!-- Filepath of pcd file -->
 
     <node name="pattern_matcher" type="pattern_matcher" pkg="pattern_matcher" output="screen">
         <param name="scan_topic" value="$(arg scan_topic)" />

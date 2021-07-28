@@ -1,11 +1,11 @@
 <launch>
 
-    <arg name="mean_queue_size" default="20" />
-    <arg name="location_filter_x" default="0.5" />
-    <arg name="location_filter_y" default="0.2" />
-    <arg name="voxel_leaf_size" default="0.0075" />
-    <arg name="scan_topic" default="scan" />
-    <arg name="output_file" default="$(find pattern_matcher)/pcd/pattern_new.pcd" />
+    <arg name="mean_queue_size" default="20" />                                             <!-- Queue size for mean scan calculation -->
+    <arg name="location_filter_x" default="0.5" />                                          <!-- X value for location filter. Points that has greater X value will be discarded -->
+    <arg name="location_filter_y" default="0.2" />                                          <!-- Y value for location filter. Points that has greater absolute Y value will be discarded -->
+    <arg name="voxel_leaf_size" default="0.0075" />                                         <!-- Leaf size for voxel filter -->
+    <arg name="scan_topic" default="scan" />                                                <!-- Name of lidar scan topic -->
+    <arg name="output_file" default="$(find pattern_matcher)/pcd/pattern_new.pcd" />        <!-- Where to save pcd file -->
 
     <node name="pattern_recorder" type="pattern_recorder" pkg="pattern_matcher" output="screen">
         <param name="mean_queue_size" value="$(arg mean_queue_size)" />
